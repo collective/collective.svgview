@@ -2,11 +2,14 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:cache="http://namespaces.zope.org/cache"
     i18n_domain="collective.svgview">
     <!-- -*- extra stuff goes here -*- -->
 
+  <include package="plone.app.contentmenu" />
+
   <browser:page
-      for="*"
+      for="Products.ATContentTypes.interfaces.IATFile"
       name="svgfile_view"
       class=".svgfileview.SVGFileView"
       template="svgfileview.pt"
@@ -15,13 +18,31 @@
       layer="..interfaces.ICollectiveSvgviewLayer"
       />
 
+  <cache:ruleset
+      for=".svgfileview.SVGFileView"
+      ruleset="plone.content.itemView"
+      />
+
+  <browser:menuItem
+      title="SVG view"
+      for="Products.ATContentTypes.interfaces.IATFile"
+      menu="plone_displayviews"
+      action="svgfile_view"
+      description="Set SVG Image view."
+      />
+
+
   <browser:page
-      for="*"
+      for="Products.ATContentTypes.interfaces.IATFile"
       name="file.svg"
       class=".svgfileview.SVGFileRawView"
       permission="zope2.View"
       layer="..interfaces.ICollectiveSvgviewLayer"
       />
 
+  <cache:ruleset
+      for=".svgfileview.SVGFileRawView"
+      ruleset="plone.content.file"
+      />
 
 </configure>
