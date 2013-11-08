@@ -1,0 +1,2 @@
+from collectivesvgviewlayer import ICollectiveSvgviewLayer
+

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.svgview">
+    <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="*"
+      name="svgfile_view"
+      class=".svgfileview.SVGFileView"
+      template="svgfileview.pt"
+      allowed_interface=".svgfileview.ISVGFileView"
+      permission="zope2.View"
+      layer="..interfaces.ICollectiveSvgviewLayer"
+      />
+
+  <browser:page
+      for="*"
+      name="file.svg"
+      class=".svgfileview.SVGFileRawView"
+      permission="zope2.View"
+      layer="..interfaces.ICollectiveSvgviewLayer"
+      />
+
+
+</configure>
